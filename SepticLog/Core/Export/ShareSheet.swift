@@ -1,0 +1,19 @@
+import SwiftUI
+import UIKit
+
+/// Presents the system share sheet for a file URL (AirDrop, Mail, Files, Print).
+struct ShareSheet: UIViewControllerRepresentable {
+    let url: URL
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: [url], applicationActivities: nil)
+    }
+
+    func updateUIViewController(_ controller: UIActivityViewController, context: Context) {}
+}
+
+/// Wraps a URL so `.sheet(item:)` can present it.
+struct ExportFile: Identifiable {
+    let url: URL
+    var id: String { url.absoluteString }
+}
